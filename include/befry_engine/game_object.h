@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utility/vector2.h"
+#include <conio.h>
 
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
@@ -18,7 +18,7 @@ namespace befry
         explicit GameObject(const Scene& root): parent(&root){}
         virtual ~GameObject();
 
-        virtual void update(const double& tick) = 0;
+        virtual void update(Console* console) = 0;
     };
     inline GameObject::~GameObject() {};
 

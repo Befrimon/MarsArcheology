@@ -8,18 +8,22 @@ project(
         LANGUAGES CXX
 )
 
-add_executable(
-        MarsArcheology main.cpp
+# My libs
+add_subdirectory(src)
 
-        ## Game Engine
-        game_engine/game_object.h
-        game_engine/scene.h game_engine/scene.cpp
+# Executable
+add_subdirectory(apps)
 
-        # Game Objects (children of game_object.h)
-        game_engine/game_objects/sprite.h game_engine/game_objects/sprite.cpp
-
-        # Utility
-        game_engine/utility/vector2.h
-        game_engine/utility/colors.h
-        game_engine/utility/key_listener.h
-)
+#add_executable(
+#        MarsArcheology main.cpp
+#
+#        ## Game Engine
+#        befry_engine/game_object.h
+#        befry_engine/scene.h befry_engine/scene.cpp
+#
+#        # Game Objects (children of game_object.h)
+#        befry_engine/game_objects/sprite.h befry_engine/game_objects/sprite.cpp
+#
+#        # Utility
+#        befry_engine/utility/vector2.h befry_engine/utility/vector2.cpp
+#)

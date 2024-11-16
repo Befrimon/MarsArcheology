@@ -1,12 +1,12 @@
 #pragma once
 
 #include <string>
+#include <conio.h>
 
 #include "../game_object.h"
 #include "../scene.h"
 
 #include "../utility/vector2.h"
-#include "../utility/colors.h"
 
 #ifndef SPRITE_H
 #define SPRITE_H
@@ -21,17 +21,17 @@ namespace befry
         Vector2 position{};
         Vector2 size{};
         std::string texture;
-        const COLORS* color;
+        const short* color;
 
     private:
-        void draw() const;
+        void draw(Console* console) const;
 
     public:
-        Sprite(const Scene& root, const Vector2& pos, const std::string& tex = "default", const COLORS& clr = Default);
+        Sprite(const Scene& root, const Vector2& pos, const std::string& tex = "", const short& clr = WHITE);
         ~Sprite();
 
         void set_texture(std::string tex);
-        void update(const double& tick);
+        void update(Console* console);
     };
 }
 

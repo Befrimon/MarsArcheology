@@ -2,6 +2,7 @@
 
 #include "utility/vector2.h"
 #include <iostream>
+#include <conio.h>
 
 #ifdef _WIN32 || _WIN64
 #include <windows.h>
@@ -9,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-befry::Scene::Scene(Vector2 dim, int cfps): FPS(cfps), size(dim) {}
+befry::Scene::Scene(Vector2 dim, Console* con, int cfps): FPS(cfps), size(dim), console(con) {}
 
 befry::Vector2 befry::Scene::rect() const { return size; };
 void befry::Scene::addSprite(std::initializer_list<Sprite*> new_sprites)
@@ -20,7 +21,7 @@ void befry::Scene::addSprite(std::initializer_list<Sprite*> new_sprites)
 
 void befry::Scene::render(Vector2 cur_res)
 {
-    std::cout << "\033[1;1H";
+    console->setCursorPosition(1, 1);
     if (cur_res < size)
     {
         std::cout << "This scene requires a terminal size of " << size.X << "x" << size.Y << std::endl;\
@@ -41,7 +42,7 @@ void befry::Scene::render(Vector2 cur_res)
     }
 
     for (Sprite* obj : objects)
-        obj->update(1e3 / FPS);
+        obj->update(console);
 
     usleep(1e7 / FPS);
 }
