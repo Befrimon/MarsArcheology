@@ -3,10 +3,9 @@
 #include <string>
 #include <conio.h>
 
-#include "game_object.h"
-#include "scene.h"
-
-#include "utility/vector2.h"
+#include "core/game_object.h"
+#include "core/scene.h"
+#include "core/vector2.h"
 
 #ifndef SPRITE_H
 #define SPRITE_H
@@ -16,21 +15,19 @@ namespace befry
     class Sprite : public GameObject
     {
     protected:
-        const Scene* parent;
-
         Vector2 position{};
         Vector2 size{};
         std::string texture;
-        const short* color;
+        short color;
 
-    private:
         void draw(conio::Console* console) const;
 
     public:
-        Sprite(const Scene& root, const Vector2& pos, const std::string& tex = "", const short& clr = WHITE);
+        Sprite(const Vector2& root_size, const Vector2& pos, const std::string& tex = "");
         ~Sprite();
 
         void set_texture(std::string tex);
+        void set_color(const short& clr);
         void update(conio::Console* console);
     };
 }

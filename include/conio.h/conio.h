@@ -76,7 +76,8 @@ namespace conio
     class Console
     {
       private:
-        int background_color;
+        int bg_color;
+        int fg_color;
 
       public:
         Console();
@@ -90,7 +91,7 @@ namespace conio
         void setCursorPosition(int x, int y);
         void clearScreen();
 
-        void setBackgroundColor(int color);
+        void setBackgroundColor(short color);
         void setTextColor(short color);
 
         int setEchoMode(bool enable);

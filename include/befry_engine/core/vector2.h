@@ -22,6 +22,8 @@ namespace befry
     bool operator==(const Vector2& fst, const Vector2& scn);
     bool operator<(const Vector2& fst, const Vector2& scn);
     bool operator>(const Vector2& fst, const Vector2& scn);
+    bool operator<=(const Vector2& fst, const Vector2& scn);
+    bool operator>=(const Vector2& fst, const Vector2& scn);
 }
 
 #endif

@@ -1,4 +1,4 @@
-#include "utility/vector2.h"
+#include "core/vector2.h"
 
 befry::Vector2 befry::operator+(const Vector2& fst, const Vector2& scn)
 {
@@ -38,9 +38,17 @@ bool befry::operator==(const Vector2& fst, const Vector2& scn)
 }
 bool befry::operator<(const Vector2& fst, const Vector2& scn)
 {
-    return fst.X < scn.X && fst.Y < scn.Y;
+    return fst.X < scn.X || fst.Y < scn.Y;
 }
 bool befry::operator>(const Vector2& fst, const Vector2& scn)
+{
+    return fst.X > scn.X || fst.Y > scn.Y;
+}
+bool befry::operator<=(const Vector2& fst, const Vector2& scn)
+{
+    return fst.X < scn.X && fst.Y < scn.Y;
+}
+bool befry::operator>=(const Vector2& fst, const Vector2& scn)
 {
     return fst.X > scn.X && fst.Y > scn.Y;
 }

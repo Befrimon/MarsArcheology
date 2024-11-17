@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <termios.h>
 
-conio::Console::Console() : background_color(40) {}
+conio::Console::Console(): bg_color(BLACK), fg_color(WHITE) {}
 conio::Console::~Console()
 {
     printf("\033[m");
@@ -32,18 +32,21 @@ void conio::Console::setCursorPosition(int x, int y)
 }
 void conio::Console::clearScreen()
 {
-    std::cout << "\033[" << background_color << "m\033[2J\033[1;1f";
+    std::cout << "\033[" << bg_color << "m\033[2J\033[1;1f";
 }
 
-void conio::Console::setBackgroundColor(int color)
+void conio::Console::setBackgroundColor(short color)
 {
-    background_color = (color % 16) + 40;
+    if (color < 0 || color >= 10) return;
+    bg_color = color;
+    std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
 }
 
 void conio::Console::setTextColor(short color)
 {
-    if (color >= 0 && color < 16)
-        std::cout << "\033[0;" << 30+color << ";" << background_color << "m";
+    if (color < 0 || color >= 10) return;
+    fg_color = color;
+    std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
 }
 
 int conio::Console::setEchoMode(bool enable)

@@ -1,43 +1,77 @@
-#include "game_object.h"
+#include "user_interface/canvas_item.h"
 #include "user_interface/button.h"
 
-#include "utility/vector2.h"
-#include "scene.h"
+#include "core/vector2.h"
+#include "core/scene.h"
 
-befry::Button::Button(const Scene& root,
-                      const Vector2& pos, const Vector2& size,
-                      const std::string& content, const short& clr
-): GameObject(root)
+befry::Button::Button(const Vector2& root_size,
+                      const Vector2& pos, const Vector2& res,
+                      const std::string& text
+): befry::CanvasItem(root_size, pos, res), disabled(false), selected(false)
 {
-    parent = &root;
-    position = pos;
-    this->size = size;
-    text = content;
-    color = clr;
+    content = text;
 }
 befry::Button::~Button() = default;
 
-void befry::Button::draw(conio::Console* console) const
+void befry::Button::draw(conio::Console* console)
 {
+    CanvasItem::draw(console);
 
-    std::string tmp;
-    for (int y = position.Y; y < position.Y + size.Y && y <= parent->rect().Y; y++)
+    console->setCursorPosition(position.X+1, position.Y + size.Y / 2);
+    if (disabled)
     {
-        console->setCursorPosition(position.X, y);
-        console->setTextColor(color);
-        for (int x = position.X; x < position.X + size.X && x <= parent->rect().X; x++)
-            if (position == Vector2{x, y}) std::cout << "┌";
-            else if (x == position.X+size.X-1 && y == position.Y) std::cout << "┐";
-            else if (x == position.X && y == position.Y+size.Y-1) std::cout << "└";
-            else if (x == position.X+size.X-1 && y == position.Y+size.Y-1) std::cout << "┘";
-            else if (x == position.X || x == position.X+size.X-1) std::cout << "│";
-            else if (y == position.Y || y == position.Y+size.Y-1) std::cout << "─";
-            else std::cout << " ";
-        console->setTextColor(WHITE);
-        std::cout << std::endl;
+        console->setBackgroundColor(disabled_color.bg_color);
+        console->setTextColor(disabled_color.fg_color);
     }
+    else if (selected)
+    {
+        console->setBackgroundColor(active_color.bg_color);
+        console->setTextColor(active_color.fg_color);
+    }
+    else
+    {
+        console->setBackgroundColor(color.bg_color);
+        console->setTextColor(color.fg_color);
+    }
+    for (int i = 0; i < content.length() && i < size.X-2; i++)
+        std::cout << content[i];
+    console->setBackgroundColor(BLACK);
+    console->setTextColor(WHITE);
+    std::cout << std::endl;
 }
 
-void befry::Button::update(conio::Console* console) {
+void befry::Button::set_content(const std::string& text)
+{
+    content = text;
+}
+
+void befry::Button::set_selected(const bool& value)
+{
+    selected = value;
+}
+void befry::Button::set_disabled(const bool& value)
+{
+    disabled = value;
+}
+
+void befry::Button::set_disabled_bg(const short& clr)
+{
+    disabled_color.bg_color = clr;
+}
+void befry::Button::set_disabled_fg(const short& clr)
+{
+    disabled_color.fg_color = clr;
+}
+void befry::Button::set_active_bg(const short& clr)
+{
+    active_color.bg_color = clr;
+}
+void befry::Button::set_active_fg(const short& clr)
+{
+    active_color.fg_color = clr;
+}
+
+void befry::Button::update(conio::Console* console)
+{
     draw(console);
 }

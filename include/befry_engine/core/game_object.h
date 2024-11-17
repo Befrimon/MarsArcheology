@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core/vector2.h"
 #include <conio.h>
 
 #ifndef GAME_OBJECT_H
@@ -12,13 +13,12 @@ namespace befry
     class GameObject
     {
     protected:
-        const Scene* parent;
-
-    private:
+        const Vector2 screen_size;
+        
         virtual void draw(conio::Console* console) const = 0;
 
     public:
-        explicit GameObject(const Scene& root): parent(&root){}
+        explicit GameObject(const Vector2& root_size): screen_size(root_size) {}
         virtual ~GameObject();
 
         virtual void update(conio::Console* console) = 0;

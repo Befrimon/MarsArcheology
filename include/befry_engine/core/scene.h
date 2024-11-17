@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "utility/vector2.h"
-#include "game_object.h"
+#include "core/vector2.h"
+#include "core/game_object.h"
 
 #ifndef SCENE_H
 #define SCENE_H
@@ -25,7 +25,8 @@ namespace befry
 
         auto rect() const -> Vector2;
 
-        void addSprite(std::initializer_list<GameObject*> new_sprites);
+        void add_children(std::initializer_list<GameObject*> new_obj);
+        GameObject* get_child(int id);
         void render(Vector2 cur_res);
     };
 }
