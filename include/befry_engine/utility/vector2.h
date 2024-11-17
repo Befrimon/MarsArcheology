@@ -19,6 +19,7 @@ namespace befry
     Vector2 operator*(const Vector2& fst, const Vector2& scn);
     Vector2 operator/(const Vector2& fst, const int& scn);
     Vector2 operator/(const Vector2& fst, const Vector2& scn);
+    bool operator==(const Vector2& fst, const Vector2& scn);
     bool operator<(const Vector2& fst, const Vector2& scn);
     bool operator>(const Vector2& fst, const Vector2& scn);
 }

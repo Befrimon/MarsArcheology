@@ -17,7 +17,7 @@ namespace befry
     protected:
         int FPS;
         Console* console;
-        std::vector<Sprite*> objects;
+        std::vector<GameObject*> objects;
         Vector2 size;
 
     public:
@@ -25,7 +25,7 @@ namespace befry
 
         auto rect() const -> Vector2;
 
-        void addSprite(std::initializer_list<Sprite*> new_sprites);
+        void addSprite(std::initializer_list<GameObject*> new_sprites);
         void render(Vector2 cur_res);
     };
 }

@@ -4,7 +4,7 @@
 #include <string>
 #include <unistd.h>
 #include <filesystem>
-#include <conio.h>z
+#include <conio.h>
 
 #ifdef _WIN32 || _WIN64
 #include <windows.h>
@@ -14,6 +14,7 @@
 
 #include <scene.h>
 #include <utility/vector2.h>
+#include <user_interface/button.h>
 
 Console console = Console();
 const std::string TEXTURES_PATH = (std::string)std::filesystem::current_path() + "/textures/";
@@ -44,12 +45,16 @@ int main()
 
     term_size();
     befry::Scene start = befry::Scene(befry::Vector2{140, 38}, &console, 24);
-
+/*
     befry::Sprite logo = befry::Sprite(start, befry::Vector2{2, 3}, TEXTURES_PATH + "logo");
     befry::Sprite sublogo = befry::Sprite(start, befry::Vector2{10, 12}, TEXTURES_PATH + "sublogo");
     befry::Sprite test = befry::Sprite(start, befry::Vector2{5, 5});
 
     start.addSprite({&logo, &sublogo, &test});
+*/
+
+    befry::Button btn = befry::Button(start, befry::Vector2{5, 5}, befry::Vector2{5, 5}, "", BLUE);
+    start.addSprite({&btn});
 
     while (true)
     {

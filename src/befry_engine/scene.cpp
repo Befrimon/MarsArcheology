@@ -1,5 +1,6 @@
 #include "scene.h"
 
+#include "game_object.h"
 #include "utility/vector2.h"
 #include <iostream>
 #include <conio.h>
@@ -13,9 +14,9 @@
 befry::Scene::Scene(Vector2 dim, Console* con, int cfps): FPS(cfps), size(dim), console(con) {}
 
 befry::Vector2 befry::Scene::rect() const { return size; };
-void befry::Scene::addSprite(std::initializer_list<Sprite*> new_sprites)
+void befry::Scene::addSprite(std::initializer_list<GameObject*> new_sprites)
 {
-    for (Sprite* obj : new_sprites)
+    for (GameObject* obj : new_sprites)
         objects.push_back(obj);
 }
 
@@ -41,7 +42,7 @@ void befry::Scene::render(Vector2 cur_res)
         std::cout << std::endl;
     }
 
-    for (Sprite* obj : objects)
+    for (GameObject* obj : objects)
         obj->update(console);
 
     usleep(1e7 / FPS);

@@ -32,6 +32,10 @@ befry::Vector2 befry::operator/(const Vector2& fst, const Vector2& scn)
 {
     return Vector2{fst.X / scn.X, fst.Y / scn.Y};
 }
+bool befry::operator==(const Vector2& fst, const Vector2& scn)
+{
+    return fst.X == scn.X && fst.Y == scn.Y;
+}
 bool befry::operator<(const Vector2& fst, const Vector2& scn)
 {
     return fst.X < scn.X && fst.Y < scn.Y;
