@@ -15,13 +15,13 @@ namespace befry
         const Scene* parent;
 
     private:
-        virtual void draw(Console* console) const = 0;
+        virtual void draw(conio::Console* console) const = 0;
 
     public:
         explicit GameObject(const Scene& root): parent(&root){}
         virtual ~GameObject();
 
-        virtual void update(Console* console) = 0;
+        virtual void update(conio::Console* console) = 0;
     };
     inline GameObject::~GameObject() {};
 

@@ -13,17 +13,3 @@ add_subdirectory(src)
 
 # Executable
 add_subdirectory(apps)
-
-#add_executable(
-#        MarsArcheology main.cpp
-#
-#        ## Game Engine
-#        befry_engine/game_object.h
-#        befry_engine/scene.h befry_engine/scene.cpp
-#
-#        # Game Objects (children of game_object.h)
-#        befry_engine/game_objects/sprite.h befry_engine/game_objects/sprite.cpp
-#
-#        # Utility
-#        befry_engine/utility/vector2.h befry_engine/utility/vector2.cpp
-#)

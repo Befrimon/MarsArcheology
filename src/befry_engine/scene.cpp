@@ -11,7 +11,7 @@
 #include <unistd.h>
 #endif
 
-befry::Scene::Scene(Vector2 dim, Console* con, int cfps): FPS(cfps), size(dim), console(con) {}
+befry::Scene::Scene(Vector2 dim, conio::Console* con, int cfps): FPS(cfps), size(dim), console(con) {}
 
 befry::Vector2 befry::Scene::rect() const { return size; };
 void befry::Scene::addSprite(std::initializer_list<GameObject*> new_sprites)

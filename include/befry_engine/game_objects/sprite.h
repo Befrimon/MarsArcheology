@@ -24,14 +24,14 @@ namespace befry
         const short* color;
 
     private:
-        void draw(Console* console) const;
+        void draw(conio::Console* console) const;
 
     public:
         Sprite(const Scene& root, const Vector2& pos, const std::string& tex = "", const short& clr = WHITE);
         ~Sprite();
 
         void set_texture(std::string tex);
-        void update(Console* console);
+        void update(conio::Console* console);
     };
 }
 

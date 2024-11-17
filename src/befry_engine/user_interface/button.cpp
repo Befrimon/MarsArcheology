@@ -17,7 +17,7 @@ befry::Button::Button(const Scene& root,
 }
 befry::Button::~Button() = default;
 
-void befry::Button::draw(Console* console) const
+void befry::Button::draw(conio::Console* console) const
 {
 
     std::string tmp;
@@ -38,6 +38,6 @@ void befry::Button::draw(Console* console) const
     }
 }
 
-void befry::Button::update(Console* console) {
+void befry::Button::update(conio::Console* console) {
     draw(console);
 }

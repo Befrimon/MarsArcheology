@@ -21,7 +21,7 @@ befry::Sprite::Sprite(const Scene& root, const Vector2& pos, const std::string& 
 befry::Sprite::~Sprite() = default;
 
 
-void befry::Sprite::draw(Console* console) const
+void befry::Sprite::draw(conio::Console* console) const
 {
     if (texture.empty()) return;
 
@@ -40,6 +40,6 @@ void befry::Sprite::draw(Console* console) const
 void befry::Sprite::set_texture(std::string tex) { texture = tex; }
 
 
-void befry::Sprite::update(Console* console) {
+void befry::Sprite::update(conio::Console* console) {
     draw(console);
 }

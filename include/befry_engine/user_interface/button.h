@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <conio.h>
+
 #include "game_object.h"
 #include "utility/vector2.h"
 
@@ -22,7 +23,7 @@ namespace befry
         bool disabled;
 
    private:
-   		void draw(Console* console) const;
+   		void draw(conio::Console* console) const;
 
    public:
         Button(const Scene& root,
@@ -33,7 +34,7 @@ namespace befry
 
         void set_text(std::string content);
         void pressed();
-        void update(Console* console);
+        void update(conio::Console* console);
     };
 }
 
