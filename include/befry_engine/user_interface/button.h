@@ -11,7 +11,7 @@
 #define BUTTON_H
 
 namespace befry
-{
+{	
     class Button : public CanvasItem
     {
  	protected:
@@ -20,11 +20,12 @@ namespace befry
         CanvasColor disabled_color;
         bool selected;
         bool disabled;
+		callback_function on_click;	
 
-        void draw(conio::Console* console);
+        void draw();
 
    public:
-        Button(const Vector2& root_size,
+        Button(const std::string& obj_name,
             const Vector2& pos,const Vector2& size,
             const std::string& text = ""
         );
@@ -39,9 +40,10 @@ namespace befry
         void set_active_bg(const short& clr);
         void set_active_fg(const short& clr);
 
+		void on_press_action(callback_function new_func);
         void pressed();
 
-        void update(conio::Console* console);
+        void update();
     };
 }
 

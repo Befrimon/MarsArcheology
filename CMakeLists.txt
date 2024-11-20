@@ -12,4 +12,4 @@ project(
 add_subdirectory(src)
 
 # Executable
-add_subdirectory(apps)
+add_subdirectory(app)

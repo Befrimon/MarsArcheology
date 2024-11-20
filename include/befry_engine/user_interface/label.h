@@ -16,11 +16,11 @@ namespace befry
  	protected:
         std::string content;
 
-        void draw(conio::Console* console);
+        void draw();
 
     public:
         Label(
-            const Vector2& root_size,
+            const std::string& obj_name,
             const Vector2& pos,const Vector2& res,
             const std::string& text
         );
@@ -28,7 +28,7 @@ namespace befry
 
         void set_content(const std::string& content);
 
-        void update(conio::Console* console);
+        void update();
     };
 }
 

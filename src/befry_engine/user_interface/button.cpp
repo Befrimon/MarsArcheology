@@ -4,39 +4,51 @@
 #include "core/vector2.h"
 #include "core/scene.h"
 
-befry::Button::Button(const Vector2& root_size,
+befry::Button::Button(const std::string& obj_name,
                       const Vector2& pos, const Vector2& res,
                       const std::string& text
-): befry::CanvasItem(root_size, pos, res), disabled(false), selected(false)
+): befry::CanvasItem(obj_name, pos, res), disabled(false), selected(false)
 {
     content = text;
 }
 befry::Button::~Button() = default;
 
-void befry::Button::draw(conio::Console* console)
+void befry::Button::draw()
 {
-    CanvasItem::draw(console);
+	CanvasColor old = color;
+	if (disabled)
+        color = disabled_color;
+    else if (selected)
+    	color = active_color;
+    CanvasItem::draw();
+	color = old;
 
-    console->setCursorPosition(position.X+1, position.Y + size.Y / 2);
+	int start_x = 0;
+	if (size.X - content.length() > 0)
+		start_x = (size.X - content.length()) / 2;
+	conio::console->setCursorPosition(position.X + start_x, position.Y + size.Y / 2);
+
     if (disabled)
     {
-        console->setBackgroundColor(disabled_color.bg_color);
-        console->setTextColor(disabled_color.fg_color);
+		conio::console->setBackgroundColor(disabled_color.bg_color);
+		conio::console->setTextColor(disabled_color.fg_color);
     }
     else if (selected)
     {
-        console->setBackgroundColor(active_color.bg_color);
-        console->setTextColor(active_color.fg_color);
+		conio::console->setBackgroundColor(active_color.bg_color);
+		conio::console->setTextColor(active_color.fg_color);
     }
     else
     {
-        console->setBackgroundColor(color.bg_color);
-        console->setTextColor(color.fg_color);
+		conio::console->setBackgroundColor(color.bg_color);
+		conio::console->setTextColor(color.fg_color);
     }
-    for (int i = 0; i < content.length() && i < size.X-2; i++)
+		
+    for (int i = 0; i < content.length() && i < size.X; i++)
         std::cout << content[i];
-    console->setBackgroundColor(BLACK);
-    console->setTextColor(WHITE);
+
+	conio::console->setBackgroundColor(RESET);
+	conio::console->setTextColor(WHITE);
     std::cout << std::endl;
 }
 
@@ -71,7 +83,17 @@ void befry::Button::set_active_fg(const short& clr)
     active_color.fg_color = clr;
 }
 
-void befry::Button::update(conio::Console* console)
+void befry::Button::on_press_action(callback_function new_func)
 {
-    draw(console);
+	on_click = new_func;
+}
+void befry::Button::pressed()
+{
+	on_click();
+}
+
+
+void befry::Button::update()
+{
+    draw();
 }

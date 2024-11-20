@@ -11,49 +11,59 @@
 #include <unistd.h>
 #endif
 
-befry::Scene::Scene(Vector2 dim, conio::Console* con, int cfps): FPS(cfps), size(dim), console(con) {}
+befry::Scene::Scene(Vector2 dim, callback_function tick_event, int cfps): FPS(cfps), size(dim), scene_event(tick_event) {}
+befry::Scene::~Scene() = default;
 
 befry::Vector2 befry::Scene::rect() const
 {
     return size;
 }
-void befry::Scene::add_children(std::initializer_list<GameObject*> new_obj)
+void befry::Scene::add_child(std::initializer_list<GameObject*> new_obj)
 {
     for (GameObject* obj : new_obj)
-        objects.push_back(obj);
+        children.push_back(obj);
 }
-befry::GameObject* befry::Scene::get_child(int id)
+befry::GameObject* befry::Scene::get_child(std::string obj_name)
 {
-    return objects[id];
+    for (GameObject* obj : children)
+		if (obj->get_name() == obj_name)
+			return obj;
+	return nullptr;
 }
 
 void befry::Scene::render(Vector2 cur_res)
 {
-    console->setCursorPosition(1, 1);
     if (cur_res < size+Vector2{2, 2})
     {
-        console->setTextColor(RED);
+		clear = true;
+		conio::console->setTextColor(RED);
         std::cout << "This scene requires a terminal size of " << size.X+2 << "x" << size.Y+2 << std::endl;\
         std::cout << "Your current resolution: " << cur_res.X << "x" << cur_res.Y << std::endl;
-        console->setTextColor(WHITE);
+		conio::console->setTextColor(WHITE);
         return;
     }
 
     for (int y = 0; y <= size.Y+1; y++)
     {
+		conio::console->setBackgroundColor(BLACK);
         for (int x = 0; x <= size.X+1; x++)
+		{
+			conio::console->setCursorPosition(x+1, y+1);
             if (x == 0 && y == 0) std::cout << "┌";
             else if (x == size.X+1 && y == 0) std::cout << "┐";
             else if (x == 0 && y == size.Y+1) std::cout << "└";
             else if (x == size.X+1 && y == size.Y+1) std::cout << "┘";
             else if (x == 0 || x == size.X+1) std::cout << "│";
             else if (y == 0 || y == size.Y+1) std::cout << "─";
-            else std::cout << " ";
+			else if (clear) std::cout << " ";
+		}
+		conio::console->setBackgroundColor(RESET);
         std::cout << std::endl;
     }
+	clear = false;
 
-    for (GameObject* obj : objects)
-        obj->update(console);
+    for (GameObject* obj : children)
+        obj->update();
 
     #ifdef _WIN32
         Sleep(1e3 / FPS);
@@ -61,3 +71,9 @@ void befry::Scene::render(Vector2 cur_res)
         usleep(1e6 / FPS);
     #endif
 }
+
+void befry::Scene::event()
+{
+	scene_event();
+}
+

@@ -5,35 +5,36 @@
 #include <iostream>
 
 befry::CanvasItem::CanvasItem(
-    const Vector2& root_size,
+    const std::string& obj_name,
     const befry::Vector2& pos, const befry::Vector2& res
-): GameObject(root_size)
+): GameObject(obj_name)
 {
-    position = pos;
+    position = pos + Vector2{1, 1};
     size = res;
     color = {BLACK, WHITE};
     borderless = false;
 }
 befry::CanvasItem::~CanvasItem() = default;
+std::string befry::CanvasItem::get_name() const { return name; }
 
-void befry::CanvasItem::draw(conio::Console* console) const
+void befry::CanvasItem::draw() const
 {
     std::string tmp;
-    for (int y = position.Y; y < position.Y + size.Y && y <= screen_size.Y && !borderless; y++)
+    for (int y = position.Y-1; y <= position.Y + size.Y && !borderless; y++)
     {
-        console->setCursorPosition(position.X, y);
-        console->setBackgroundColor(color.bg_color);
-        console->setTextColor(color.fg_color);
-        for (int x = position.X; x < position.X + size.X && x <= screen_size.X; x++)
-            if (position == Vector2{x, y}) std::cout << "┌";
-            else if (x == position.X+size.X-1 && y == position.Y) std::cout << "┐";
-            else if (x == position.X && y == position.Y+size.Y-1) std::cout << "└";
-            else if (x == position.X+size.X-1 && y == position.Y+size.Y-1) std::cout << "┘";
-            else if (x == position.X || x == position.X+size.X-1) std::cout << "│";
-            else if (y == position.Y || y == position.Y+size.Y-1) std::cout << "─";
-            else std::cout << " ";
-        console->setBackgroundColor(BLACK);
-        console->setTextColor(WHITE);
+		conio::console->setCursorPosition(position.X-1, y);
+		conio::console->setBackgroundColor(color.bg_color);
+		conio::console->setTextColor(color.fg_color);
+        for (int x = position.X-1; x <= position.X + size.X; x++)
+            if 		(x == position.X-1 && y == position.Y-1) 			std::cout << "┌";
+            else if (x == position.X+size.X && y == position.Y-1) 		std::cout << "┐";
+            else if (x == position.X-1 && y == position.Y+size.Y) 		std::cout << "└";
+            else if (x == position.X+size.X && y == position.Y+size.Y) 	std::cout << "┘";
+            else if (x == position.X-1 || x == position.X+size.X) 		std::cout << "│";
+            else if (y == position.Y-1 || y == position.Y+size.Y) 		std::cout << "─";
+            else 														std::cout << " ";
+		conio::console->setBackgroundColor(RESET);
+		conio::console->setTextColor(WHITE);
         std::cout << std::endl;
     }
 }
@@ -60,7 +61,7 @@ void befry::CanvasItem::set_borderless(const bool& value)
     borderless = value;
 }
 
-void befry::CanvasItem::update(conio::Console* console)
+void befry::CanvasItem::update()
 {
-    draw(console);
+    draw();
 }

@@ -20,15 +20,17 @@ namespace befry
         std::string texture;
         short color;
 
-        void draw(conio::Console* console) const;
+        void draw() const;
 
     public:
-        Sprite(const Vector2& root_size, const Vector2& pos, const std::string& tex = "");
+        Sprite(const std::string& obj_name, const Vector2& pos, const std::string& tex = "");
         ~Sprite();
 
         void set_texture(std::string tex);
         void set_color(const short& clr);
-        void update(conio::Console* console);
+
+		std::string get_name() const;
+        void update();
     };
 }
 

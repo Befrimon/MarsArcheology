@@ -25,11 +25,11 @@ namespace befry
         CanvasColor color;
         bool borderless;
 
-        void draw(conio::Console* console) const;
+        void draw() const;
 
     public:
         CanvasItem(
-            const Vector2& root_size,
+            const std::string& obj_name,
             const Vector2& pos,const Vector2& res
         );
         ~CanvasItem();
@@ -41,7 +41,8 @@ namespace befry
 
         void set_borderless(const bool& value);
 
-        void update(conio::Console* console);
+		std::string get_name() const;
+        void update();
     };
 }
 
