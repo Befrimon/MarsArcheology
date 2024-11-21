@@ -9,7 +9,7 @@ The first stable versions of the game will appear on the releases page
 The requirements are:
 - CMake 3.14 or better.
 - A C++17 compatible compiler
-- [conio.h](https://github.com/zoelabbb/conio.h) lib
+- My fork of [conio.h](https://github.com/Befrimon/conio.h) lib
 - BefryEngine (now combined with game)
 - Git
 
