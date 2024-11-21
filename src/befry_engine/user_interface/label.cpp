@@ -24,16 +24,16 @@ void befry::Label::draw()
 	int start_x = 0;
 	if (size.X - content.length() > 0)
 		start_x = (size.X - content.length()) / 2;
-	conio::console->setCursorPosition(position.X+start_x, position.Y + size.Y / 2);
+	conio::console::setCursorPosition(position.X+start_x, position.Y + size.Y / 2);
 
-	conio::console->setBackgroundColor(color.bg_color);
-	conio::console->setTextColor(color.fg_color);
+	conio::console::setBackgroundColor(color.bg_color);
+	conio::console::setTextColor(color.fg_color);
 
     for (int i = 0; i < content.length() && i < size.X; i++)
         std::cout << content[i];
     
-	conio::console->setBackgroundColor(BLACK);
-	conio::console->setTextColor(WHITE);
+	conio::console::setBackgroundColor(BLACK);
+	conio::console::setTextColor(WHITE);
     std::cout << std::endl;
 }
 

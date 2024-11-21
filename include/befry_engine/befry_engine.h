@@ -3,6 +3,8 @@
 #ifndef BEFRY_ENGINE_H
 #define BEFRY_ENGINE_H
 
+#include "config.h"
+
 /* Core */
 #include "core/game_object.h"
 #include "core/scene.h"

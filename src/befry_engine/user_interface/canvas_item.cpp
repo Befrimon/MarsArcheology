@@ -22,9 +22,9 @@ void befry::CanvasItem::draw() const
     std::string tmp;
     for (int y = position.Y-1; y <= position.Y + size.Y && !borderless; y++)
     {
-		conio::console->setCursorPosition(position.X-1, y);
-		conio::console->setBackgroundColor(color.bg_color);
-		conio::console->setTextColor(color.fg_color);
+		conio::console::setCursorPosition(position.X-1, y);
+		conio::console::setBackgroundColor(color.bg_color);
+		conio::console::setTextColor(color.fg_color);
         for (int x = position.X-1; x <= position.X + size.X; x++)
             if 		(x == position.X-1 && y == position.Y-1) 			std::cout << "┌";
             else if (x == position.X+size.X && y == position.Y-1) 		std::cout << "┐";
@@ -33,8 +33,8 @@ void befry::CanvasItem::draw() const
             else if (x == position.X-1 || x == position.X+size.X) 		std::cout << "│";
             else if (y == position.Y-1 || y == position.Y+size.Y) 		std::cout << "─";
             else 														std::cout << " ";
-		conio::console->setBackgroundColor(RESET);
-		conio::console->setTextColor(WHITE);
+		conio::console::setBackgroundColor(RESET);
+		conio::console::setTextColor(WHITE);
         std::cout << std::endl;
     }
 }

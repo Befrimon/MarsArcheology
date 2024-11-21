@@ -1,5 +1,6 @@
 add_executable(
 	Game main.cpp
+	march/player.cpp
 )
 target_compile_features(Game PRIVATE cxx_std_20)
 

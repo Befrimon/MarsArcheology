@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include "core/game_object.h"
 #include "game_objects/sprite.h"
 
@@ -8,14 +10,14 @@
 #include <fstream>
 #include <conio.h>
 
+
 befry::Sprite::Sprite(
     const std::string& obj_name,
     const Vector2& pos, const std::string& tex
 ): GameObject(obj_name)
 {
-
     position = pos + Vector2{1, 1};
-    texture = tex;
+    texture = Config::get_texture_path() + tex;
     color = WHITE;
 
     size = Vector2{0, 0};
@@ -31,10 +33,10 @@ void befry::Sprite::draw() const
     std::ifstream fin(texture + ".txt");
     for (int i = position.Y; std::getline(fin, tmp); i++)
     {
-		conio::console->setCursorPosition(position.X, i);
-		conio::console->setTextColor(color);
+		conio::console::setCursorPosition(position.X, i);
+		conio::console::setTextColor(color);
         std::cout << tmp << std::endl;
-		conio::console->setTextColor(WHITE);
+		conio::console::setTextColor(WHITE);
     }
     fin.close();
 }
