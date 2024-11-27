@@ -5,36 +5,73 @@
 #include "core/scene.h"
 
 #include <conio.h>
+#include <sstream>
 
 befry::Label::Label(
     const std::string& obj_name,
     const befry::Vector2 &pos, const befry::Vector2 &res,
-    const std::string& text
+    const std::string& text, const TextAlign& align
 ): CanvasItem(obj_name, pos, res)
 {
     borderless = true;
     content = text;
+    text_align = align;
 }
 befry::Label::~Label() = default;
 
-void befry::Label::draw()
+void befry::Label::draw() const
 {
     CanvasItem::draw();
 
-	int start_x = 0;
-	if (size.X - content.length() > 0)
-		start_x = (size.X - content.length()) / 2;
-	conio::console::setCursorPosition(position.X+start_x, position.Y + size.Y / 2);
+    /* Split by lines */
+    std::vector<std::string> lines;
+    std::stringstream ss(content);
+    std::string line;
+    while (!ss.eof()) {
+        std::getline(ss, line, '\n');
+        lines.push_back(line);
+    }
 
-	conio::console::setBackgroundColor(color.bg_color);
-	conio::console::setTextColor(color.fg_color);
+    /* Print */
+    for (int y = 0; y < lines.size(); y++)
+    {
+        int pos_x = 0, pos_y = 0;
+        switch (text_align)
+        {
+        case Center:
+            pos_x = (size.X - static_cast<int>(lines[y].length())) / 2;
+            pos_y = (size.Y - static_cast<int>(lines.size())) / 2 + y;
+            break;
+        case North:
+            pos_x = (size.X - static_cast<int>(lines[y].length())) / 2;
+            pos_y = y;
+            break;
+        case South:
+            pos_x = (size.X - static_cast<int>(lines[y].length())) / 2;
+            pos_y = size.Y - static_cast<int>(lines.size()) + y;
+            break;
+        case West:
+            pos_x = 0;
+            pos_y = (size.Y - static_cast<int>(lines.size())) / 2 + y;
+            break;
+        case East:
+            pos_x = size.X - static_cast<int>(lines[y].length());
+            pos_y = (size.Y - static_cast<int>(lines.size())) / 2 + y;
+            break;
+        default:
+            pos_x = 0;
+            pos_y = y;
+            break;
+        }
 
-    for (int i = 0; i < content.length() && i < size.X; i++)
-        std::cout << content[i];
-    
-	conio::console::setBackgroundColor(BLACK);
-	conio::console::setTextColor(WHITE);
-    std::cout << std::endl;
+        conio::console::setCursorPosition(position.X+pos_x, position.Y+pos_y);
+        conio::console::setBackgroundColor(color.bg_color);
+        conio::console::setTextColor(color.fg_color);
+        std::cout << lines[y];
+        conio::console::setBackgroundColor(RESET);
+        conio::console::setTextColor(RESET);
+        std::cout << std::endl;
+    }
 }
 
 void befry::Label::set_content(const std::string& text)

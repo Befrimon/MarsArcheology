@@ -72,12 +72,7 @@ void befry::Scene::render(Vector2 cur_res)
 
     for (GameObject* obj : children)
         obj->update();
-
-    #ifdef _WIN32
-        Sleep(1e3 / Config::get_scene_fps());
-    #else
-        usleep(1e6 / Config::get_scene_fps());
-    #endif
+	usleep(1e6 / Config::get_scene_fps());
 }
 
 void befry::Scene::event()

@@ -19,5 +19,6 @@
 #include "user_interface/label.h"
 #include "user_interface/button.h"
 #include "user_interface/button_group.h"
+#include "user_interface/separator.h"
 
 #endif

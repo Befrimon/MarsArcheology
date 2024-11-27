@@ -31,9 +31,9 @@ void befry::Sprite::draw() const
 
     std::string tmp;
     std::ifstream fin(texture + ".txt");
-    for (int i = position.Y; std::getline(fin, tmp); i++)
+    for (int y = position.Y; std::getline(fin, tmp); y++)
     {
-		conio::console::setCursorPosition(position.X, i);
+		conio::console::setCursorPosition(position.X, y);
 		conio::console::setTextColor(color);
         std::cout << tmp << std::endl;
 		conio::console::setTextColor(WHITE);

@@ -20,11 +20,11 @@ namespace befry
         std::string texture;
         short color;
 
-        void draw() const;
+        void draw() const override;
 
     public:
         Sprite(const std::string& obj_name, const Vector2& pos, const std::string& tex = "");
-        ~Sprite();
+        ~Sprite() override;
 
         void set_texture(std::string tex);
         void set_color(const short& clr);

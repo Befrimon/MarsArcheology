@@ -1,8 +1,6 @@
 #pragma once
 
-#include "core/vector2.h"
 #include <string>
-#include <conio.h>
 
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H

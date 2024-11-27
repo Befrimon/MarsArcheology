@@ -14,8 +14,8 @@ namespace march
 	class Player
 	{
 	protected:
-		std::vector<Tool> tools;
-		Suit spacesuit;
+		std::vector<Tool*> tools;
+		Suit* spacesuit;
 
 		int level;
 		int money;
@@ -26,8 +26,11 @@ namespace march
 		Player();
 		~Player();
 
-		std::string get_player_info();
-		std::string get_tools_info();
+		std::string get_player_info() const;
+		std::string get_tools_info() const;
+
+		Tool* get_tool(const int &id) const;
+		Suit* get_suit() const;
 
 	};
 }

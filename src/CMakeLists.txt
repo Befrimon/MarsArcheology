@@ -14,6 +14,7 @@ add_library(befry_engine SHARED
         befry_engine/user_interface/label.cpp
         befry_engine/user_interface/button.cpp
 		befry_engine/user_interface/button_group.cpp
+		befry_engine/user_interface/separator.cpp
 )
 target_include_directories(befry_engine PUBLIC ${ENGINE_HEADERS})
 

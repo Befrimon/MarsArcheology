@@ -14,11 +14,14 @@ namespace march
 		std::string name;
 		std::string icon;
 		int durability;
+		int efficiency;
 		int type;
 		int level;
 	};
+
 	struct Suit
 	{
+		std::string name;
 		double oxygen;
 		int warm_coef;
 		int level;

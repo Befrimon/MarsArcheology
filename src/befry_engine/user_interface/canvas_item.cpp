@@ -3,6 +3,7 @@
 #include "core/scene.h"
 
 #include <iostream>
+#include <conio.h>
 
 befry::CanvasItem::CanvasItem(
     const std::string& obj_name,

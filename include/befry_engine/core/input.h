@@ -34,8 +34,8 @@
 
 #define KEY_UP 156
 #define KEY_DOWN 157
-#define KEY_LEFT 158
-#define KEY_RIGHT 159
+#define KEY_RIGHT 158
+#define KEY_LEFT 159
 
 namespace befry
 {

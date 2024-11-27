@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <conio.h>
 
 #include "core/game_object.h"
 #include "core/vector2.h"
@@ -25,14 +24,14 @@ namespace befry
         CanvasColor color;
         bool borderless;
 
-        void draw() const;
+        void draw() const override;
 
     public:
         CanvasItem(
             const std::string& obj_name,
             const Vector2& pos,const Vector2& res
         );
-        ~CanvasItem();
+        ~CanvasItem() override;
 
         void set_position(Vector2 pos);
         void resize(Vector2 res);
@@ -41,8 +40,8 @@ namespace befry
 
         void set_borderless(const bool& value);
 
-		std::string get_name() const;
-        void update();
+		std::string get_name() const override;
+        void update() override;
     };
 }
 
