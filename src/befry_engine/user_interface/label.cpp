@@ -5,15 +5,15 @@
 #include "core/scene.h"
 
 #include <conio.h>
+#include <string_view>
 #include <sstream>
 
 befry::Label::Label(
-    const std::string& obj_name,
-    const befry::Vector2 &pos, const befry::Vector2 &res,
-    const std::string& text, const TextAlign& align
+    std::string_view obj_name,
+    const Vector2 &pos, const Vector2 &res,
+    std::string_view text, const TextAlign& align
 ): CanvasItem(obj_name, pos, res)
 {
-    borderless = true;
     content = text;
     text_align = align;
 }
@@ -21,13 +21,12 @@ befry::Label::~Label() = default;
 
 void befry::Label::draw() const
 {
-    CanvasItem::draw();
-
     /* Split by lines */
     std::vector<std::string> lines;
     std::stringstream ss(content);
     std::string line;
-    while (!ss.eof()) {
+    while (!ss.eof())
+    {
         std::getline(ss, line, '\n');
         lines.push_back(line);
     }
@@ -74,7 +73,7 @@ void befry::Label::draw() const
     }
 }
 
-void befry::Label::set_content(const std::string& text)
+void befry::Label::set_content(std::string_view text)
 {
     content = text;
 }
@@ -83,3 +82,4 @@ void befry::Label::update()
 {
     draw();
 }
+

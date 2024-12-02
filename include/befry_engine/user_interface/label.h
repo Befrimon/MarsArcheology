@@ -13,13 +13,12 @@ namespace befry
     enum TextAlign
     {
         Center,
-        North, South, East, West,
-        //NorthEast, NorthWest, SouthEast, SouthWest
+        North, South, East, West
     };
 
     class Label : public CanvasItem
     {
- 	protected:
+    protected:
         std::string content;
         TextAlign text_align;
 
@@ -27,13 +26,13 @@ namespace befry
 
     public:
         Label(
-            const std::string& obj_name,
-            const Vector2& pos,const Vector2& res,
-            const std::string& text, const TextAlign& align = Center
+            std::string_view obj_name,
+            const Vector2& pos, const Vector2& res,
+            std::string_view text, const TextAlign& align = Center
         );
         ~Label() override;
 
-        void set_content(const std::string& content);
+        void set_content(std::string_view content);
 
         void update() override;
     };

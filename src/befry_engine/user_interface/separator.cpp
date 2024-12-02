@@ -1,10 +1,13 @@
 #include "user_interface/separator.h"
-#include "config.h"
+#include "core.h"
+
 #include <iostream>
 #include <conio.h>
 
-befry::Separator::Separator(const std::string& obj_name, const Vector2& pos, const int& len, const SepType &t)
-    :CanvasItem(obj_name, pos, Vector2{}), type(t), length(len) {}
+befry::Separator::Separator(
+    const std::string_view obj_name,
+    const Vector2& pos, const int& len, const SepType &t
+): CanvasItem(obj_name, pos, Vector2{}), type(t), length(len) {}
 
 befry::Separator::~Separator() = default;
 

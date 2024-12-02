@@ -1,10 +1,10 @@
 #pragma once
 
 #include <string>
-#include <conio.h>
+#include <string_view>
 
+#include "../conio/conio.h"
 #include "core/game_object.h"
-#include "core/scene.h"
 #include "core/vector2.h"
 
 #ifndef SPRITE_H
@@ -15,22 +15,22 @@ namespace befry
     class Sprite : public GameObject
     {
     protected:
-        Vector2 position{};
-        Vector2 size{};
+        Vector2 position;
+        Vector2 size{1, 1};
         std::string texture;
-        short color;
+        short color = WHITE;
 
         void draw() const override;
 
     public:
-        Sprite(const std::string& obj_name, const Vector2& pos, const std::string& tex = "");
+        Sprite(std::string_view obj_name, const Vector2& pos, std::string_view tex = "");
         ~Sprite() override;
 
-        void set_texture(std::string tex);
+        void set_texture(std::string_view tex);
         void set_color(const short& clr);
 
-		std::string get_name() const;
-        void update();
+        std::string_view get_name() const override;
+        void update() override;
     };
 }
 

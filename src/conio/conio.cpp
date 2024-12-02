@@ -1,7 +1,6 @@
 #include "conio.h"
 
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <termios.h>
@@ -10,13 +9,6 @@
 
 int conio::console::bg_color = BLACK;
 int conio::console::fg_color = WHITE;
-
-conio::console::console() {}
-conio::console::~console()
-{
-	std::cout << "\033[m" << "\e[?25h";
-}
-
 
 void conio::console::clearLine()
 {
@@ -42,7 +34,7 @@ void conio::console::clearScreen()
 
 void conio::console::setBackgroundColor(short color)
 {
-    if (color < 0 || color >= 10) return;
+    if (color < 0 || color > 10) return;
 	if (color == 10) bg_color = -40;
 	else bg_color = color;
     std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
@@ -50,7 +42,7 @@ void conio::console::setBackgroundColor(short color)
 
 void conio::console::setTextColor(short color)
 {
-    if (color < 0 || color >= 10) return;
+    if (color < 0 || color > 10) return;
 	if (color == 10) fg_color = -30;
 	else fg_color = color;
     std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
@@ -168,8 +160,8 @@ void conio::console::getTerminalSize(int& x, int& y)
 {
 	winsize w{};
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-    x = w.ws_col; 
-	y = w.ws_row;	
+    x = w.ws_col;
+	y = w.ws_row;
 }
 
 // conio::Console* conio::console = new conio::Console();

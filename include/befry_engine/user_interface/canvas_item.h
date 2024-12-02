@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 
 #include "core/game_object.h"
 #include "core/vector2.h"
@@ -21,27 +22,24 @@ namespace befry
     protected:
         Vector2 position{};
         Vector2 size{};
-        CanvasColor color;
-        bool borderless;
+        CanvasColor color{};
 
-        void draw() const override;
+        void draw() const override = 0;
 
     public:
         CanvasItem(
-            const std::string& obj_name,
-            const Vector2& pos,const Vector2& res
+            std::string_view obj_name,
+            const Vector2& pos, const Vector2& res
         );
-        ~CanvasItem() override;
+        ~CanvasItem() override = default;
 
-        void set_position(Vector2 pos);
-        void resize(Vector2 res);
-        void set_bg_color(const short& clr);
-        void set_fg_color(const short& clr);
+        std::string_view get_name() const override;
 
-        void set_borderless(const bool& value);
+        virtual void set_position(const Vector2& pos);
+        virtual void set_bg_color(const short& clr) = 0;
+        virtual void set_fg_color(const short& clr) = 0;
 
-		std::string get_name() const override;
-        void update() override;
+        void update() override = 0;
     };
 }
 

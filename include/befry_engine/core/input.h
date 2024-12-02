@@ -39,16 +39,16 @@
 
 namespace befry
 {
-	class Input
-	{
-	protected:
+    class Input
+    {
+    protected:
 
-	public:
-		Input();
-		~Input();
+    public:
+        Input() = default;
+        ~Input() = default;
 
-		static int get_key();
-	};
+        static int get_key();
+    };
 }
 
 #endif

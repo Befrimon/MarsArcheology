@@ -1,6 +1,6 @@
 #pragma once
 
-#include "user_interface/canvas_item.h"
+#include "canvas_item.h"
 
 #ifndef SEPARATOR_H
 #define SEPARATOR_H
@@ -18,7 +18,7 @@ namespace befry
 
     public:
         Separator(
-            const std::string& obj_name,
+            std::string_view obj_name,
             const Vector2& pos, const int& len, const SepType& t
         );
         ~Separator() override;

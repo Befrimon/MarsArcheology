@@ -36,27 +36,6 @@ GitHub      : https://github.com/zoelabbb/conio.h.git
  * @version 1.1.1
  */
 
-
-/*
-List funtions
-=============
-    cprintf
-    cscanf
-    gotoxy
-    clrscr
-    textcolor
-    textbackground
-    wherex
-    wherey
-    getch
-    getche
-    ungetch
-    kbhit
-    putch
-    putchar
-    cputs
-    clreol
-*/
 #pragma once
 
 #ifndef __CONIO4LINUX_H
@@ -70,6 +49,7 @@ List funtions
 #define BLUE 	4
 #define PURPLE 	5
 #define CYAN 	6
+#define GRAY    7
 #define WHITE 	9
 #define RESET 	10
 
@@ -82,10 +62,6 @@ namespace conio
         static int fg_color;
 
       public:
-        console();
-        ~console();
-
-
         static void clearLine();
         static void insertLine();
         static void deleteLine();
@@ -109,7 +85,7 @@ namespace conio
 
         static int kbhit();
 
-        static int putch(const char c);
+        static int putch(char c);
         static int cputs(const char* str);
 
         static char* getpass(const char* prompt);
@@ -120,8 +96,6 @@ namespace conio
 
 		static void getTerminalSize(int &x, int&y);
     };
-
-	// extern Console* console;
 }
 
 #endif

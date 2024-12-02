@@ -1,15 +1,16 @@
 cmake_minimum_required(VERSION 3.14...3.29)
-set(ALLOW_DUPLICATE_CUSTOM_TARGETS TRUE)
+
 
 project(
-        MarsArcheology
-        VERSION 0.1
-        DESCRIPTION "Find life of dead planet"
-        LANGUAGES CXX
+    MarsArcheology
+    VERSION 0.1.1
+    DESCRIPTION "Find life of dead planet"
+    LANGUAGES CXX
 )
 
-# My libs
 add_subdirectory(src)
 
-# Executable
-add_subdirectory(app)
+add_executable(${PROJECT_NAME} app/main.cpp)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE conio befry_engine march)
