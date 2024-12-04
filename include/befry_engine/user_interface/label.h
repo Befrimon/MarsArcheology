@@ -33,6 +33,8 @@ namespace befry
         ~Label() override;
 
         void set_content(std::string_view content);
+        void set_bg_color(const short& clr) override;
+        void set_fg_color(const short& clr) override;
 
         void update() override;
     };

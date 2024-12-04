@@ -1,23 +1,26 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include <befry_engine.h>
-#include <unistd.h>
 
 #ifndef LOOP_H
 #define LOOP_H
 
 namespace march
 {
+    enum SCENES {MAIN_MENU, STATION};
+
     class GameLoop
     {
     protected:
-        static std::vector<befry::Scene*> scenes;
+        static std::vector<std::unique_ptr<befry::Scene>> scenes;
         static int cur_scene;
 
     public:
-        static void load_scene(befry::Scene* scn);
+        static void set_active_scene(const int& scn);
+        static void load_scenes();
         static void game_loop();
     };
 }

@@ -8,7 +8,7 @@
 
 
 int conio::console::bg_color = BLACK;
-int conio::console::fg_color = WHITE;
+int conio::console::fg_color = RESET;
 
 void conio::console::clearLine()
 {
@@ -35,16 +35,14 @@ void conio::console::clearScreen()
 void conio::console::setBackgroundColor(short color)
 {
     if (color < 0 || color > 10) return;
-	if (color == 10) bg_color = -40;
-	else bg_color = color;
+	bg_color = color;
     std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
 }
 
 void conio::console::setTextColor(short color)
 {
     if (color < 0 || color > 10) return;
-	if (color == 10) fg_color = -30;
-	else fg_color = color;
+	fg_color = color;
     std::cout << "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
 }
 

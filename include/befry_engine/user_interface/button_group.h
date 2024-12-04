@@ -25,10 +25,13 @@ namespace befry
             const Vector2& pos,const Vector2& size,
             std::string_view text = ""
         );
+        int length() const;
         void set_current(int id);
         void prev();
         void next();
-        Button get_current() const;
+
+        Button* get_current();
+        Button* get_by_id(int id);
     };
 }
 

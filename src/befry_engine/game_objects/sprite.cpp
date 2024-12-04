@@ -31,7 +31,7 @@ void befry::Sprite::draw() const
         conio::console::setCursorPosition(position.X, y);
         conio::console::setTextColor(color);
         std::cout << tmp << std::endl;
-        conio::console::setTextColor(WHITE);
+        conio::console::setTextColor(RESET);
     }
     fin.close();
 }

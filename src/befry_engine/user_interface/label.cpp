@@ -78,6 +78,16 @@ void befry::Label::set_content(std::string_view text)
     content = text;
 }
 
+void befry::Label::set_bg_color(const short& clr)
+{
+    color.bg_color = clr;
+}
+
+void befry::Label::set_fg_color(const short& clr)
+{
+    color.fg_color = clr;
+}
+
 void befry::Label::update()
 {
     draw();

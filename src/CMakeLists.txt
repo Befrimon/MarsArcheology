@@ -29,6 +29,7 @@ target_link_libraries(befry_engine PRIVATE conio)
 add_library(march STATIC
     mars_archeology/loop.cpp
     mars_archeology/scenes/main_menu.cpp
+    mars_archeology/scenes/station.cpp
 )
 target_include_directories(march PUBLIC ${HEADERS}/mars_archeology/)
-target_link_libraries(march PRIVATE befry_engine)
+target_link_libraries(march PRIVATE befry_engine conio)

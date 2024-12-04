@@ -10,7 +10,10 @@
 befry::Button::Button(const std::string_view obj_name,
                       const Vector2& pos, const Vector2& res,
                       const std::string_view text
-): CanvasItem(obj_name, pos, res), disabled(false), selected(false), event(nullptr), content(text){}
+): CanvasItem(obj_name, pos, res),
+    disabled(false), selected(false), event(nullptr), content(text),
+    active_color{BLACK, GREEN}, disabled_color{BLACK, GRAY}
+{}
 
 befry::Button::~Button() = default;
 
@@ -32,8 +35,8 @@ void befry::Button::draw() const
             else if (x == position.X-1 || x == position.X+size.X) 		std::cout << "│";
             else if (y == position.Y-1 || y == position.Y+size.Y) 		std::cout << "─";
             else 														std::cout << " ";
-        conio::console::setBackgroundColor(RESET);
-        conio::console::setTextColor(WHITE);
+        conio::console::setBackgroundColor(BLACK);
+        conio::console::setTextColor(RESET);
         std::cout << std::endl;
     }
 
@@ -52,10 +55,10 @@ void befry::Button::draw() const
         int pos_y = (size.Y - static_cast<int>(lines.size())) / 2 + y;
 
         conio::console::setCursorPosition(position.X+pos_x, position.Y+pos_y);
-        conio::console::setBackgroundColor(color.bg_color);
-        conio::console::setTextColor(color.fg_color);
+        conio::console::setBackgroundColor(cur.bg_color);
+        conio::console::setTextColor(cur.fg_color);
         std::cout << lines[y];
-        conio::console::setBackgroundColor(RESET);
+        conio::console::setBackgroundColor(BLACK);
         conio::console::setTextColor(RESET);
         std::cout << std::endl;
     }

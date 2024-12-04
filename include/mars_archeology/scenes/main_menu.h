@@ -9,15 +9,14 @@ namespace march
 {
     class MainMenu : public befry::Scene
     {
-    protected:
+    private:
+        befry::ButtonGroup buttons;
 
     public:
         MainMenu();
         ~MainMenu() override;
 
-        befry::GameObject& get_child(std::string obj_name) const override;
-
-        void render() override;
+        int render() override;
         void event() override;
     };
 }

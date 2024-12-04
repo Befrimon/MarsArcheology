@@ -18,7 +18,7 @@ namespace befry
         Vector2 position;
         Vector2 size{1, 1};
         std::string texture;
-        short color = WHITE;
+        short color = RESET;
 
         void draw() const override;
 

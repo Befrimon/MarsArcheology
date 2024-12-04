@@ -1,13 +1,24 @@
 #include "loop.h"
 
-std::vector<befry::Scene*> march::GameLoop::scenes;
-int march::GameLoop::cur_scene = 0;
+#include "scenes/main_menu.h"
+#include "scenes/station.h"
 
-void march::GameLoop::load_scene(befry::Scene* scn)
+#include <unistd.h>
+#include <memory>
+
+std::vector<std::unique_ptr<befry::Scene>> march::GameLoop::scenes;
+int march::GameLoop::cur_scene = STATION;
+
+void march::GameLoop::set_active_scene(const int& scn)
 {
-    scenes.push_back(scn);
+    cur_scene = scn;
 }
 
+void march::GameLoop::load_scenes()
+{
+    scenes.push_back(std::make_unique<MainMenu>());
+    scenes.push_back(std::make_unique<Station>());
+}
 
 void march::GameLoop::game_loop()
 {

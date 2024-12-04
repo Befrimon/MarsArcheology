@@ -50,8 +50,7 @@ GitHub      : https://github.com/zoelabbb/conio.h.git
 #define PURPLE 	5
 #define CYAN 	6
 #define GRAY    7
-#define WHITE 	9
-#define RESET 	10
+#define RESET 	9
 
 namespace conio
 {

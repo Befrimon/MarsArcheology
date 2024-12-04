@@ -13,7 +13,7 @@ befry::Separator::~Separator() = default;
 
 void befry::Separator::draw() const
 {
-    conio::console::setTextColor(WHITE);
+    conio::console::setTextColor(RESET);
     if (type == VERTICAL)
         for (int y = position.Y; y < position.Y+length; y++)
         {

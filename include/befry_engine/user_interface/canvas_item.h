@@ -20,9 +20,9 @@ namespace befry
     class CanvasItem : public GameObject
     {
     protected:
-        Vector2 position{};
-        Vector2 size{};
-        CanvasColor color{};
+        Vector2 position;
+        Vector2 size;
+        CanvasColor color;
 
         void draw() const override = 0;
 

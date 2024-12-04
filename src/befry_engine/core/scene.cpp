@@ -9,7 +9,16 @@ befry::Scene::Scene()
     Core::clear();
 }
 
-void befry::Scene::render()
+template<class T>
+std::shared_ptr<T> befry::Scene::get_child(std::string obj_name) const
+{
+    for (std::shared_ptr<GameObject> obj : children)
+        if (obj->get_name() == obj_name)
+            return std::static_pointer_cast<T>(obj);
+    return nullptr;
+}
+
+int befry::Scene::render()
 {
     const Vector2 size = Core::get_scene_size();
     Vector2 cur_res{};
@@ -21,8 +30,8 @@ void befry::Scene::render()
         conio::console::setTextColor(RED);
         std::cout << "This scene requires a terminal size of " << size.X+2 << "x" << size.Y+2 << std::endl;\
         std::cout << "Your current resolution: " << cur_res.X << "x" << cur_res.Y << std::endl;
-        conio::console::setTextColor(WHITE);
-        return;
+        conio::console::setTextColor(RESET);
+        return -1;
     }
 
     conio::console::setBackgroundColor(BLACK);
@@ -40,5 +49,7 @@ void befry::Scene::render()
         }
         std::cout << std::endl;
     }
+
+    return 0;
 }
 

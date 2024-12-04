@@ -1,8 +1,8 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
-#include "vector2.h"
 #include "game_object.h"
 
 #ifndef SCENE_H
@@ -13,15 +13,16 @@ namespace befry
     class Scene
     {
     protected:
-        std::vector<GameObject*> children;
+        std::vector<std::shared_ptr<GameObject>> children;
 
     public:
         Scene();
         virtual ~Scene() = default;
 
-        virtual GameObject& get_child(std::string obj_name) const = 0;
+        template<class T>
+        std::shared_ptr<T> get_child(std::string obj_name) const;
 
-        virtual void render();
+        virtual int render();
         virtual void event() = 0;
     };
 }

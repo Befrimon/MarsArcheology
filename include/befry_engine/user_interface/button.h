@@ -13,8 +13,8 @@ namespace befry
     {
  	protected:
         std::string content;
-        CanvasColor active_color = CanvasColor{BLACK, GREEN};
-        CanvasColor disabled_color = CanvasColor{BLACK, GRAY};
+        CanvasColor active_color;
+        CanvasColor disabled_color;
         bool selected;
         bool disabled;
         void (*event)();
