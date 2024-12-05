@@ -28,3 +28,17 @@ void befry::Separator::draw() const
         }
 }
 
+void befry::Separator::set_bg_color(const short& clr)
+{
+    color.bg_color = clr;
+}
+
+void befry::Separator::set_fg_color(const short& clr)
+{
+    color.fg_color = clr;
+}
+
+void befry::Separator::update()
+{
+    draw();
+}

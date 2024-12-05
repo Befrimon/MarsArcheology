@@ -28,8 +28,18 @@ target_link_libraries(befry_engine PRIVATE conio)
 ## Add march executable
 add_library(march STATIC
     mars_archeology/loop.cpp
+
+    ## Scenes
     mars_archeology/scenes/main_menu.cpp
     mars_archeology/scenes/station.cpp
+    mars_archeology/scenes/museum.cpp
+    mars_archeology/scenes/shop.cpp
+    mars_archeology/scenes/planet.cpp
+
+    ## Sprites
+    mars_archeology/sprites/map.cpp
+        mars_archeology/sprites/vase.cpp
+        #mars_archeology/sprites/
 )
 target_include_directories(march PUBLIC ${HEADERS}/mars_archeology/)
 target_link_libraries(march PRIVATE befry_engine conio)

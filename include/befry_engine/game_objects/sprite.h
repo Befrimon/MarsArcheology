@@ -26,7 +26,7 @@ namespace befry
         Sprite(std::string_view obj_name, const Vector2& pos, std::string_view tex = "");
         ~Sprite() override;
 
-        void set_texture(std::string_view tex);
+        virtual void set_texture(std::string_view tex);
         void set_color(const short& clr);
 
         std::string_view get_name() const override;

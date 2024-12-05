@@ -9,14 +9,28 @@ befry::Scene::Scene()
     Core::clear();
 }
 
-template<class T>
-std::shared_ptr<T> befry::Scene::get_child(std::string obj_name) const
+std::shared_ptr<befry::GameObject> befry::Scene::get_child(std::string obj_name) const
 {
     for (std::shared_ptr<GameObject> obj : children)
         if (obj->get_name() == obj_name)
-            return std::static_pointer_cast<T>(obj);
+            return obj;
     return nullptr;
 }
+
+void befry::Scene::clear()
+{
+    const Vector2 size = Core::get_scene_size();
+    conio::console::setCursorPosition(1, 1);
+
+    conio::console::setBackgroundColor(BLACK);
+    for (int y = 0; y <= size.Y+1; y++)
+    {
+        for (int x = 0; x <= size.X+1; x++)
+            std::cout << " ";
+        std::cout << std::endl;
+    }
+}
+
 
 int befry::Scene::render()
 {

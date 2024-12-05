@@ -18,5 +18,3 @@ void befry::CanvasItem::set_position(const Vector2 &pos)
 {
     position = pos;
 }
-
-

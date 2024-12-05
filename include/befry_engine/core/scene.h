@@ -19,9 +19,9 @@ namespace befry
         Scene();
         virtual ~Scene() = default;
 
-        template<class T>
-        std::shared_ptr<T> get_child(std::string obj_name) const;
+        std::shared_ptr<GameObject> get_child(std::string obj_name) const;
 
+        static void clear();
         virtual int render();
         virtual void event() = 0;
     };

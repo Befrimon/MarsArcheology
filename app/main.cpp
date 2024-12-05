@@ -2,6 +2,8 @@
 #include <loop.h>
 #include <scenes/main_menu.h>
 
+#include <sprites/vase.h>
+
 int main()
 {
     conio::console::hideCursor();

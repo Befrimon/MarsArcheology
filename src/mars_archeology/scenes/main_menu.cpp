@@ -7,7 +7,7 @@
 /* On click events */
 void new_game()
 {
-    conio::console::clearScreen();
+    befry::Scene::clear();
     march::GameLoop::set_active_scene(march::STATION);
 }
 void load_game() {}

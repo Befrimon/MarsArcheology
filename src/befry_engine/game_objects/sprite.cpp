@@ -9,37 +9,42 @@
 #include <iostream>
 #include <fstream>
 #include <conio.h>
+#include <sstream>
 
 
 /* Constructor and destructor */
 befry::Sprite::Sprite(
     std::string_view obj_name,
     const Vector2& pos, std::string_view tex
-): GameObject(obj_name), position(pos + Vector2{1, 1}),
-    texture(std::string(Core::get_texture_path()) + std::string(tex) + ".txt") {}
+): GameObject(obj_name), position(pos + Vector2{1, 1})
+{
+    set_texture(tex);
+}
 befry::Sprite::~Sprite() = default;
 
 /* Private */
 void befry::Sprite::draw() const
 {
-    if (texture.empty()) return;
-
     std::string tmp;
-    std::ifstream fin(texture);
-    for (int y = position.Y; std::getline(fin, tmp); y++)
+    std::stringstream tex(texture);
+    for (int y = position.Y; std::getline(tex, tmp); y++)
     {
         conio::console::setCursorPosition(position.X, y);
         conio::console::setTextColor(color);
         std::cout << tmp << std::endl;
         conio::console::setTextColor(RESET);
     }
-    fin.close();
 }
 
 /* Public */
 void befry::Sprite::set_texture(std::string_view tex)
 {
-    texture = tex;
+    texture = "";
+    std::string tmp;
+    std::ifstream fin(std::string(Core::get_texture_path()) + std::string(tex) + ".txt");
+    for (int i = 0; getline(fin, tmp); i++)
+        texture += tmp + "\n";
+    fin.close();
 }
 void befry::Sprite::set_color(const short& clr)
 {

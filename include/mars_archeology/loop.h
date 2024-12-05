@@ -10,7 +10,7 @@
 
 namespace march
 {
-    enum SCENES {MAIN_MENU, STATION};
+    enum SCENES {MAIN_MENU, STATION, MUSEUM, SHOP, PLANET};
 
     class GameLoop
     {

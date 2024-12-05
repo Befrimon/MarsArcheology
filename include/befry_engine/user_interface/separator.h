@@ -22,6 +22,11 @@ namespace befry
             const Vector2& pos, const int& len, const SepType& t
         );
         ~Separator() override;
+
+        void set_bg_color(const short& clr) override;
+        void set_fg_color(const short& clr) override;
+
+        void update() override;
     };
 }
 

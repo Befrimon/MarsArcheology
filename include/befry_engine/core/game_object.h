@@ -16,7 +16,7 @@ namespace befry
         virtual void draw() const = 0;
 
     public:
-        explicit GameObject(std::string_view obj_name) {}
+        explicit GameObject(std::string_view obj_name) :name(obj_name) {}
         virtual ~GameObject() = default;
 
 		virtual std::string_view get_name() const = 0;
