@@ -1,4 +1,6 @@
 #include "scenes/planet.h"
+
+#include "player.h"
 #include "sprites/map.h"
 
 march::Planet::Planet()
@@ -29,6 +31,19 @@ void march::Planet::event()
     if (conio::console::kbhit()) switch(befry::Input::get_key())
     {
         case KEY_Q:
-        exit(0);
+            exit(0);
+        case KEY_RIGHT:
+            Player::move(befry::Vector2{2, 0});
+            break;
+        case KEY_LEFT:
+            Player::move(befry::Vector2{-2, 0});
+            break;
+        case KEY_DOWN:
+            Player::move(befry::Vector2{0, 1});
+            break;
+        case KEY_UP:
+            Player::move(befry::Vector2{0, -1});
+            break;
+        default: break;
     }
 }

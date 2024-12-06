@@ -18,7 +18,6 @@ namespace march
             {"##", ""}
         };
 
-        befry::Vector2 player_position;
         MapMode mode;
 
         void draw() const override;

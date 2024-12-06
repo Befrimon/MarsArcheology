@@ -20,7 +20,7 @@ std::string md5_hash(std::string_view str)
     fin.close();
     system("rm /tmp/march_vase.txt");
 
-    return std::move(hash);
+    return hash;
 }
 std::string dec_to_bin(int num)
 {

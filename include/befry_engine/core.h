@@ -10,6 +10,13 @@
 
 namespace befry
 {
+    template<typename T>
+    struct CurMax
+    {
+        T max_value;
+        T value;
+    };
+
     class Core
     {
     protected:

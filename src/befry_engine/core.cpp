@@ -4,6 +4,7 @@
 #include <iostream>
 #include <conio.h>
 #include <filesystem>
+#include <map>
 
 std::string befry::Core::texture_path;
 befry::Vector2 befry::Core::scene_size;
@@ -11,10 +12,17 @@ int befry::Core::scene_fps;
 
 void befry::Core::read_config(std::string_view path)
 {
-    // TODO Read config file
-    texture_path = static_cast<std::string>(std::filesystem::current_path()) +"/textures/";
-    scene_size = Vector2{140, 40};
-    scene_fps = 12;
+    /* Read file */
+    std::ifstream fin(static_cast<std::string>(std::filesystem::current_path()) + std::string(path));
+    std::map<std::string, std::string> values;
+    std::string cur_line;
+    while (getline(fin, cur_line))
+        values[cur_line.substr(0, cur_line.find_first_of('='))] = cur_line.substr(cur_line.find_first_of('=')+1, cur_line.length());
+    fin.close();
+
+    texture_path = static_cast<std::string>(std::filesystem::current_path()) + values["TEXTURES_PATH"];
+    scene_size = str_to_vector2(values["SCENE_SIZE"]);
+    scene_fps = std::atoi(values["SCENE_FPS"].c_str());
 }
 
 void befry::Core::clear()

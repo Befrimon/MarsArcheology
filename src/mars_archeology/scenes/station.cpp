@@ -1,5 +1,6 @@
 #include "scenes/station.h"
 #include "loop.h"
+#include "player.h"
 
 #include <befry_engine.h>
 
@@ -7,8 +8,8 @@ march::Station::Station()
 {
     children.push_back(std::make_shared<befry::Sprite>("Background", befry::Vector2{1, 1}, "stantion"));
     children.push_back(std::make_shared<befry::Label>("Hint", befry::Vector2{1, 1}, befry::Vector2{140, 1}, "Press \'h\' to open help"));
-    children.push_back(std::make_shared<befry::Label>("PlayerInfo", befry::Vector2{1, 1}, befry::Vector2{143, 1}, "1 level | 󰗶 10/10 | 100$", befry::West));
-    children.push_back(std::make_shared<befry::Label>("ToolsInfo", befry::Vector2{1, 1}, befry::Vector2{148, 1}, "󰜐 (1) - 100% | 󰢷 (1) - 100%  |  (1) - 100%", befry::East));
+    children.push_back(std::make_shared<befry::Label>("PlayerInfo", befry::Vector2{1, 1}, befry::Vector2{143, 1}, "", befry::West));
+    children.push_back(std::make_shared<befry::Label>("ToolsInfo", befry::Vector2{1, 1}, befry::Vector2{148, 1}, "", befry::East));
     children.push_back(std::make_shared<befry::Label>("ControlsInfo", befry::Vector2{1, 40}, befry::Vector2{152, 1}, " Museum |  New expedition  | Shop "));
 
     std::static_pointer_cast<befry::Label>(get_child("Hint"))->set_fg_color(YELLOW);
@@ -21,6 +22,9 @@ int march::Station::render()
 {
     if (Scene::render() == -1)
         return -1;
+
+    std::static_pointer_cast<befry::Label>(get_child("PlayerInfo"))->set_content(Player::get_info());
+    std::static_pointer_cast<befry::Label>(get_child("ToolsInfo"))->set_content(Player::get_tool_info());
 
     for (std::shared_ptr<befry::GameObject> obj : children)
         obj->update();

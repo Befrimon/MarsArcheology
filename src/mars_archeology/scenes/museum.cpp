@@ -22,8 +22,9 @@ int march::Museum::render()
     if (Scene::render() == -1)
         return -1;
 
-    std::shared_ptr<befry::Label> vcount = std::static_pointer_cast<befry::Label>(get_child("ArtCount"));
-    vcount->set_content("Artefact: " + std::to_string(cur_art+1) + "/" + std::to_string(arts.size()));
+    std::static_pointer_cast<befry::Label>(get_child("ArtCount"))->set_content(
+        "Artefact: " + std::to_string(cur_art+1) + "/" + std::to_string(arts.size())
+    );
 
     for (std::shared_ptr<befry::GameObject> obj : children)
         obj->update();

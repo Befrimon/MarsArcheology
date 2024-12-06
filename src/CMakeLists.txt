@@ -6,40 +6,40 @@ target_include_directories(conio PUBLIC ${HEADERS}/conio/)
 
 ## Create befry_engin.h lib
 add_library(befry_engine SHARED
-    ## Core
-    befry_engine/core.cpp
-    befry_engine/core/input.cpp
-    befry_engine/core/vector2.cpp
-    befry_engine/core/scene.cpp
+        ## Core
+        befry_engine/core.cpp
+        befry_engine/core/input.cpp
+        befry_engine/core/vector2.cpp
+        befry_engine/core/scene.cpp
 
-    ## Game Objects
-    befry_engine/game_objects/sprite.cpp
+        ## Game Objects
+        befry_engine/game_objects/sprite.cpp
 
-    ## User Interface
-    befry_engine/user_interface/button.cpp
-    befry_engine/user_interface/button_group.cpp
-    befry_engine/user_interface/canvas_item.cpp
-    befry_engine/user_interface/label.cpp
-    befry_engine/user_interface/separator.cpp
+        ## User Interface
+        befry_engine/user_interface/button.cpp
+        befry_engine/user_interface/button_group.cpp
+        befry_engine/user_interface/canvas_item.cpp
+        befry_engine/user_interface/label.cpp
+        befry_engine/user_interface/separator.cpp
 )
 target_include_directories(befry_engine PUBLIC ${HEADERS}/befry_engine/)
 target_link_libraries(befry_engine PRIVATE conio)
 
 ## Add march executable
 add_library(march STATIC
-    mars_archeology/loop.cpp
+        mars_archeology/loop.cpp
+        mars_archeology/player.cpp
 
-    ## Scenes
-    mars_archeology/scenes/main_menu.cpp
-    mars_archeology/scenes/station.cpp
-    mars_archeology/scenes/museum.cpp
-    mars_archeology/scenes/shop.cpp
-    mars_archeology/scenes/planet.cpp
+        ## Scenes
+        mars_archeology/scenes/main_menu.cpp
+        mars_archeology/scenes/station.cpp
+        mars_archeology/scenes/museum.cpp
+        mars_archeology/scenes/shop.cpp
+        mars_archeology/scenes/planet.cpp
 
-    ## Sprites
-    mars_archeology/sprites/map.cpp
+        ## Sprites
+        mars_archeology/sprites/map.cpp
         mars_archeology/sprites/vase.cpp
-        #mars_archeology/sprites/
 )
 target_include_directories(march PUBLIC ${HEADERS}/mars_archeology/)
 target_link_libraries(march PRIVATE befry_engine conio)
