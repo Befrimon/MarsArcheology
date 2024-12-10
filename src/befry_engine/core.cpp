@@ -9,6 +9,7 @@
 std::string befry::Core::texture_path;
 befry::Vector2 befry::Core::scene_size;
 int befry::Core::scene_fps;
+std::string befry::Core::game_dir;
 
 void befry::Core::read_config(std::string_view path)
 {
@@ -23,6 +24,9 @@ void befry::Core::read_config(std::string_view path)
     texture_path = static_cast<std::string>(std::filesystem::current_path()) + values["TEXTURES_PATH"];
     scene_size = str_to_vector2(values["SCENE_SIZE"]);
     scene_fps = std::atoi(values["SCENE_FPS"].c_str());
+    game_dir = getenv("HOME") + values["GAME_DIR"];
+    if (!std::filesystem::exists(game_dir))
+        std::filesystem::create_directory(game_dir);
 }
 
 void befry::Core::clear()
@@ -54,3 +58,9 @@ int befry::Core::get_scene_fps()
 {
     return scene_fps;
 }
+
+std::string befry::Core::get_game_dir()
+{
+    return game_dir;
+}
+

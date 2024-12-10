@@ -3,6 +3,8 @@
 #include "player.h"
 
 #include <befry_engine.h>
+#include <expeditions/wasteland.h>
+#include <scenes/planet.h>
 
 march::Station::Station()
 {
@@ -47,6 +49,7 @@ void march::Station::event()
             break;
         case KEY_UP:
             clear();
+            std::static_pointer_cast<Planet>(GameLoop::get_scene(PLANET))->start_expedition(WASTELAND);
             GameLoop::set_active_scene(PLANET);
             break;
         case KEY_RIGHT:

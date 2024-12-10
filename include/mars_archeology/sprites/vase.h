@@ -18,7 +18,7 @@ namespace march
         Vase(std::string_view obj_name, befry::Vector2 pos);
         ~Vase() override;
 
-        void set_texture(std::string_view tex) override;
+        void set_texture(std::string_view tex, bool custom_path = false) override;
     };
 }
 

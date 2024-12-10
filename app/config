@@ -1,3 +1,4 @@
 TEXTURES_PATH=/textures/
 SCENE_SIZE=vec140,40
 SCENE_FPS=12
+GAME_DIR=/.config/mars-arch/

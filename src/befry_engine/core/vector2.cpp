@@ -1,7 +1,7 @@
 #include "core/vector2.h"
 
 
-befry::Vector2 befry::operator+(const Vector2& fst, const Vector2& scn)
+befry::Vector2 befry::operator+(const Vector2 &fst, const Vector2 &scn)
 {
     return Vector2{fst.X + scn.X, fst.Y + scn.Y};
 }
@@ -39,6 +39,36 @@ befry::Vector2 befry::operator/(const Vector2& fst, const int& scn)
 befry::Vector2 befry::operator/(const Vector2& fst, const Vector2& scn)
 {
     return Vector2{fst.X / scn.X, fst.Y / scn.Y};
+}
+
+befry::Vector2 befry::Vector2::operator+=(const Vector2& oth)
+{
+    return Vector2{X + oth.X, Y + oth.Y};
+}
+
+befry::Vector2 befry::Vector2::operator-=(const Vector2& oth)
+{
+    return Vector2{X - oth.X, Y - oth.Y};
+}
+
+befry::Vector2 befry::Vector2::operator*=(const int& oth)
+{
+    return Vector2{X * oth, Y * oth};
+}
+
+befry::Vector2 befry::Vector2::operator*=(const Vector2& oth)
+{
+    return Vector2{X * oth.X, Y * oth.Y};
+}
+
+befry::Vector2 befry::Vector2::operator/=(const int& oth)
+{
+    return Vector2{X / oth, Y / oth};
+}
+
+befry::Vector2 befry::Vector2::operator/=(const Vector2& oth)
+{
+    return Vector2{X / oth.X, Y / oth.Y};
 }
 
 bool befry::operator==(const Vector2& fst, const Vector2& scn)

@@ -23,6 +23,7 @@ namespace befry
         static std::string texture_path;
         static Vector2 scene_size;
         static int scene_fps;
+        static std::string game_dir;
 
     public:
         static void read_config(std::string_view path);
@@ -31,6 +32,7 @@ namespace befry
         static std::string_view get_texture_path();
         static Vector2 get_scene_size();
         static int get_scene_fps();
+        static std::string get_game_dir();
     };
 }
 

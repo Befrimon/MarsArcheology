@@ -15,11 +15,12 @@ namespace march
     class GameLoop
     {
     protected:
-        static std::vector<std::unique_ptr<befry::Scene>> scenes;
+        static std::vector<std::shared_ptr<befry::Scene>> scenes;
         static int cur_scene;
 
     public:
         static void set_active_scene(const int& scn);
+        static std::shared_ptr<befry::Scene> get_scene(const int& scn);
         static void load_scenes();
         static void game_loop();
     };

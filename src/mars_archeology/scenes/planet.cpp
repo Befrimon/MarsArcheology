@@ -1,5 +1,9 @@
 #include "scenes/planet.h"
 
+#include <befry_engine.h>
+#include <sstream>
+#include <expeditions/wasteland.h>
+
 #include "player.h"
 #include "sprites/map.h"
 
@@ -26,6 +30,12 @@ int march::Planet::render()
     return 0;
 }
 
+void march::Planet::update_map()
+{
+    exp_type->explore(Player::get_position());
+    std::static_pointer_cast<Map>(get_child("MiniMap"))->set_texture(befry::Core::get_game_dir() + "cur_tile", true);
+}
+
 void march::Planet::event()
 {
     if (conio::console::kbhit()) switch(befry::Input::get_key())
@@ -34,15 +44,30 @@ void march::Planet::event()
             exit(0);
         case KEY_RIGHT:
             Player::move(befry::Vector2{2, 0});
+            update_map();
             break;
         case KEY_LEFT:
             Player::move(befry::Vector2{-2, 0});
+            update_map();
             break;
         case KEY_DOWN:
             Player::move(befry::Vector2{0, 1});
+            update_map();
             break;
         case KEY_UP:
             Player::move(befry::Vector2{0, -1});
+            update_map();
+            break;
+        default: break;
+    }
+}
+
+void march::Planet::start_expedition(TYPE type)
+{
+    switch (type)
+    {
+        case WASTELAND:
+            exp_type = std::make_shared<Wasteland>();
             break;
         default: break;
     }

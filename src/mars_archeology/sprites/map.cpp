@@ -15,6 +15,12 @@ march::Map::~Map() = default;
 
 void march::Map::draw() const
 {
+    if (mode == MINI)
+    {
+        Sprite::draw();
+        return;
+    }
+
     for (int y = position.Y; y < position.Y + size.Y; y++)
     {
         for (int x = position.X; x < position.X + size.X*2; x+=2)

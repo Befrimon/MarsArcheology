@@ -1,7 +1,7 @@
 #include "player.h"
 #include <sstream>
 
-befry::Vector2 march::Player::position = befry::Vector2{10, 1};
+befry::Vector2 march::Player::position = befry::Vector2{0, 0};
 std::vector<march::Tool> march::Player::tools =
 {
     Tool{"Pickaxe", 10, 10, 1},
@@ -21,7 +21,11 @@ befry::Vector2 march::Player::get_position()
 
 void march::Player::move(befry::Vector2 delta)
 {
-    position = position + delta;
+    position += delta;
+    std::cout << delta << " " << position << std::endl;
+    exit(0);
+    if (position < befry::Vector2{0, 0})
+        position -= delta;
 }
 
 march::Tool march::Player::get_tool(PlrTools tool)

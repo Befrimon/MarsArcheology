@@ -37,11 +37,13 @@ void befry::Sprite::draw() const
 }
 
 /* Public */
-void befry::Sprite::set_texture(std::string_view tex)
+void befry::Sprite::set_texture(std::string_view tex, bool custom_path)
 {
     texture = "";
     std::string tmp;
-    std::ifstream fin(std::string(Core::get_texture_path()) + std::string(tex) + ".txt");
+    std::ifstream fin(
+        custom_path ? "" : static_cast<std::string>(Core::get_texture_path()) +
+        std::string(tex) + ".txt");
     for (int i = 0; getline(fin, tmp); i++)
         texture += tmp + "\n";
     fin.close();

@@ -64,7 +64,7 @@ void march::Vase::draw() const
     }
 }
 
-void march::Vase::set_texture(std::string_view tex)
+void march::Vase::set_texture(std::string_view tex, bool custom_path)
 {
     pattern = "";
     if (tex == "Empty")
