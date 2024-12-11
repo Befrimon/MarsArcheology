@@ -11,6 +11,7 @@ The requirements are:
 - A C++17 compatible compiler
 - My fork of [conio.h](https://github.com/Befrimon/conio.h) lib (now combined with this repo)
 - BefryEngine (now combined with this repo)
+- [PerlinNoise.hpp](https://github.com/Reputeless/PerlinNoise)
 - Git
 
 If you find some bug (in the engine or in the game), then open issue with a description of the problem
