@@ -41,9 +41,8 @@ void befry::Sprite::set_texture(std::string_view tex, bool custom_path)
 {
     texture = "";
     std::string tmp;
-    std::ifstream fin(
-        custom_path ? "" : static_cast<std::string>(Core::get_texture_path()) +
-        std::string(tex) + ".txt");
+    std::string path = (custom_path ? "" : static_cast<std::string>(Core::get_texture_path())) + std::string(tex) + ".txt";
+    std::ifstream fin(path);
     for (int i = 0; getline(fin, tmp); i++)
         texture += tmp + "\n";
     fin.close();

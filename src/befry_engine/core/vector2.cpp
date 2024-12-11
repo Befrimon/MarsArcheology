@@ -41,34 +41,40 @@ befry::Vector2 befry::operator/(const Vector2& fst, const Vector2& scn)
     return Vector2{fst.X / scn.X, fst.Y / scn.Y};
 }
 
-befry::Vector2 befry::Vector2::operator+=(const Vector2& oth)
+befry::Vector2& befry::operator+=(Vector2& fst, const Vector2& scn)
 {
-    return Vector2{X + oth.X, Y + oth.Y};
+    fst = fst + scn;
+    return fst;
 }
 
-befry::Vector2 befry::Vector2::operator-=(const Vector2& oth)
+befry::Vector2& befry::operator-=(Vector2& fst, const Vector2& scn)
 {
-    return Vector2{X - oth.X, Y - oth.Y};
+    fst = fst - scn;
+    return fst;
 }
 
-befry::Vector2 befry::Vector2::operator*=(const int& oth)
+befry::Vector2& befry::operator*=(Vector2& fst, const int& scn)
 {
-    return Vector2{X * oth, Y * oth};
+    fst = fst * scn;
+    return fst;
 }
 
-befry::Vector2 befry::Vector2::operator*=(const Vector2& oth)
+befry::Vector2& befry::operator*=(Vector2& fst, const Vector2& scn)
 {
-    return Vector2{X * oth.X, Y * oth.Y};
+    fst = fst * scn;
+    return fst;
 }
 
-befry::Vector2 befry::Vector2::operator/=(const int& oth)
+befry::Vector2& befry::operator/=(Vector2& fst, const int& scn)
 {
-    return Vector2{X / oth, Y / oth};
+    fst = fst / scn;
+    return fst;
 }
 
-befry::Vector2 befry::Vector2::operator/=(const Vector2& oth)
+befry::Vector2& befry::operator/=(Vector2& fst, const Vector2& scn)
 {
-    return Vector2{X / oth.X, Y / oth.Y};
+    fst = fst / scn;
+    return fst;
 }
 
 bool befry::operator==(const Vector2& fst, const Vector2& scn)

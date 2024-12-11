@@ -21,7 +21,6 @@ void befry::Button::draw() const
 {
     CanvasColor cur = disabled ? disabled_color : (selected ? active_color : color);
 
-    std::string tmp;
     for (int y = position.Y-1; y <= position.Y + size.Y; y++)
     {
         conio::console::setCursorPosition(position.X-1, y);

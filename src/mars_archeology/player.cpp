@@ -22,9 +22,7 @@ befry::Vector2 march::Player::get_position()
 void march::Player::move(befry::Vector2 delta)
 {
     position += delta;
-    std::cout << delta << " " << position << std::endl;
-    exit(0);
-    if (position < befry::Vector2{0, 0})
+    if (position < befry::Vector2{0, 0} || position > befry::Vector2{59, 29})
         position -= delta;
 }
 

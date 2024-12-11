@@ -44,6 +44,7 @@ add_library(march STATIC
         ## Expeditions
         mars_archeology/expeditions/expedition.cpp
         mars_archeology/expeditions/wasteland.cpp
+        mars_archeology/sprites/toolbox.cpp
 )
 target_include_directories(march PUBLIC ${HEADERS}/mars_archeology/)
 target_link_libraries(march PRIVATE befry_engine conio)

@@ -3,6 +3,7 @@
 #include <befry_engine.h>
 #include <sstream>
 #include <expeditions/wasteland.h>
+#include <sprites/toolbox.h>
 
 #include "player.h"
 #include "sprites/map.h"
@@ -16,6 +17,10 @@ march::Planet::Planet()
     children.push_back(std::make_shared<Map>("MiniMap", befry::Vector2{95, 1}, MINI, 15));
 
     children.push_back(std::make_shared<befry::Label>("TerrainInfo", befry::Vector2{1, 32}, befry::Vector2{78, 3}, " Temp -15°C ▼\n Time 6:00 AM\n󱐟 Food 99 days", befry::West));
+    children.push_back(std::make_shared<Toolbox>("Brush", befry::Vector2{83, 18}));
+    children.push_back(std::make_shared<Toolbox>("Shovel", befry::Vector2{83, 24}));
+    children.push_back(std::make_shared<Toolbox>("Pickaxe", befry::Vector2{83, 30}));
+    children.push_back(std::make_shared<Toolbox>("Suit", befry::Vector2{83, 36}));
 }
 march::Planet::~Planet() = default;
 
@@ -68,6 +73,7 @@ void march::Planet::start_expedition(TYPE type)
     {
         case WASTELAND:
             exp_type = std::make_shared<Wasteland>();
+            update_map();
             break;
         default: break;
     }
